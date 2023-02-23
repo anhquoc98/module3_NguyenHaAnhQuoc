@@ -1,0 +1,51 @@
+create database quan_ly_ban_hang;
+use quan_ly_ban_hang;
+
+create table customer(
+cID int primary key,
+cName varchar(255),
+cAge int
+);
+
+create table order_customer(
+oID int primary key auto_increment,
+cID int,
+oDate date,
+oTotalPrice varchar(255),
+foreign key (cID) references  customer(cID)
+);
+
+create table product(
+pID int primary key,
+pName varchar(255),
+pPrice varchar (255)
+);
+
+create table order_detail(
+oID int,
+pID int,
+odQTY varchar(255),
+primary key (oID,pID),
+foreign key (oID) references order_customer(oID),
+foreign key (pID) references product(pID)
+);
+
+insert into customer(cID,cName,cAge)
+value (1,'Quoc',20),
+(2,'Chinh',20),
+(3,'Minh',20);
+
+insert into order_customer(cID,oDate,oTotalPrice)
+value(1,'2022-02-11','20$'),
+(2,'2022-02-11','20$'),
+(3,'2022-02-11','20$');
+
+insert into product(pID,pName,pPrice)
+value(1,'A','123'),
+(2,'B','123'),
+(3,'C','123');
+
+insert into order_detail(odQTY)
+value('abc'),
+('asd'),
+('aabc');
