@@ -45,7 +45,7 @@ value(1,'A','123'),
 (2,'B','123'),
 (3,'C','123');
 
-insert into order_detail(odQTY)
-value('abc'),
-('asd'),
-('aabc');
+insert into order_detail(oID,pID,odQTY)
+value(1,1,'abc'),
+(2,2,'abc'),
+(2,2,'abc');
