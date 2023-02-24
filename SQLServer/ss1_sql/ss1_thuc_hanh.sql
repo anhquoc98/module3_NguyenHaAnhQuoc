@@ -2,27 +2,27 @@ create database ss1_baitap;
 
 use ss1_baitap;
 
-create table class(
+create table class_teacher(
 id_name int primary key auto_increment,
 name_class varchar(255)
 );
 
-insert into class(name_class)
+insert into class_teacher(name_class)
 value ('Nguyen Van A'),
 ('Nguyen Van B'),
 ('Nguyen Van C');
 
 select * from class;
 
-update class
+update class_teacher
 set name_class ='C0922G1'
 where id_name =1;
 
-update class
+update class_teacher
 set name_class ='C1022G1'
 where id_name =2;
 
-update class
+update class_teacher
 set name_class ='C1122G1'
 where id_name =3;
 
@@ -45,3 +45,4 @@ set age_teacher=30
 where id_teacher=2;
 
 drop table teacher;
+drop table class_teacher;
