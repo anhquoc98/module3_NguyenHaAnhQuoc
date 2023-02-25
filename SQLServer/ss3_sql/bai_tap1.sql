@@ -81,8 +81,7 @@ set sql_safe_updates = 1;
 
  -- Hiển thị các thông tin :StudentName,SubName,Mark.Dữ liệu sắp xếp theo điểm thi(mark) giảm dần, nếu trùng sắp theo tên tăng dần
  
- select studenName.student_class,subName.subject_class,mark.mark from mark
- inner join student_class on mark.studentID=student_class.studentID
- join subject_class on mark.subId
+ select studenName,subName,mark from mark
+ inner join student_class on mark.studentId=student_class.studentId
+ join subject_class on mark.subId= subject_class.subId
  order by mark.mark desc,student_class.studenName asc;
- select * from student_class;

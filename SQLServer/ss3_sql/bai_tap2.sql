@@ -1,5 +1,6 @@
-create database quan_ly_ban_hang_ss3;
-use quan_ly_ban_hang_ss3;
+drop database if exists `quan_ly_ban_hang_ss3`;
+create database `quan_ly_ban_hang_ss3`;
+use `quan_ly_ban_hang_ss3`;
 
 create table customer(
 cID int primary key,
@@ -60,9 +61,20 @@ value(1,1,3),
 select oID,oDate,oTotalPrice from order_customer;
 
  -- Hiển thị danh sách các khách hàng đã mua hàng, và danh sách sản phẩm được mua bởi các khách
-select * from order_detail inner join order_customer on order_detail.oID =order_customer.oID
+select cName as `Name Customer`, pName as `Product`
+from order_detail 
+inner join order_customer on order_detail.oID =order_customer.oID
 inner join product on order_detail.pID =product.pID
-inner join customer on customer.cID=order_customer.oID;
+inner join customer on customer.cID=order_customer.cID;
 
  -- Hiển thị tên những khách hàng không mua bất kỳ một sản phẩm nào
+ select customer.cName from customer
+ left join order_customer on customer.cID = order_customer.cID
+ where order_customer.cID is null;
  
+ -- Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn (giá một hóa đơn được tính bằng tổng giá bán của từng loại mặt hàng xuất hiện trong hóa đơn. 
+ -- Giá bán của từng loại được tính = odQTY*pPrice)
+ select order_customer.oID, order_customer.oDate, order_detail.odQTY*product.pPrice as `Total price`
+ from order_detail
+ inner join order_customer on order_detail.oID = order_customer.oID
+ inner join product on order_detail.pID = product.pID;
