@@ -23,25 +23,31 @@
         .menu:hover {
             color: gray;
         }
+@media screen and (max-width: 500px) {
+    .bodyRight {
 
+        padding-left: 30px;
+        margin-left: 30px;
+        width: 70%;
+        background-color: whitesmoke;
+    }
+    .text{
+        text-indent: 50px;
+        margin-left: 10px;
+    }
+}
         .bodyConten {
             display: flex;
         }
 
         .bodyLeft {
+            margin-right: 10px;
+            padding-right: 30px;
             justify-content: space-between;
             width: 30%;
-            border-right: 1px solid #333;
         }
 
-        .bodyRight {
-            width: 70%;
-            background-color: whitesmoke;
-        }
-        .text{
-            text-indent: 30px;
-            margin-left: 10px;
-        }
+
 
         .end {
             text-align: center;
@@ -64,6 +70,8 @@
     <span class="menu">Nhân Vật có Hoạt Hình</span>
     <span class="menu">Góp Ý</span>
 </div>
+
+
 <div class="bodyConten">
     <div class="bodyLeft">
         <div>
