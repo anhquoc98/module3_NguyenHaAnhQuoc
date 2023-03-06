@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .head {
+        width: 100%;
+        height: 30px;
+        background: gray;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .headd:not(:last-child) {
+        margin-right: 30px;
+    }
+
+    .headd:hover {
+        text-decoration: underline;
+        color: black;
+    }
+
+    select {
+        background-color: gray;
+    }
+
+    .button {
+        height: 70px;
+        width: 150px;
+        text-align-all: center;
+        margin: 10px;
+    }
+
+    #body1 {
+        background-color: whitesmoke;
+        display: flex;
+
+    }
+
+    #left {
+        grid-area: left
+    }
+
+    #content {
+        grid-area: content
+    }
+
+    #right {
+        grid-area: right
+    }
+
+
+    #right {
+        width: 25%;
+    }
+
+    #left {
+
+        width: 25%;
+    }
+
+    #content {
+        width: 50%;
+        text-align: left;
+    }
+
+    #endbody {
+        text-align: center;
+        height: 100px;
+        font-family: "Arial Black", serif;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    span {
+        width: 100%;
+        text-align: center;
+    }
+</style>
+<body>
+
+<div class="head">
+    <div class="left-header">
+        <span class="headd"><strong>Logo</strong></span>
+        <select class="headd">
+            <option>Home</option>
+            <option>Link1</option>
+            <option>Link1</option>
+            <option>Link1</option>
+        </select>
+        <span class="headd">About</span>
+        <span class="headd">Projects</span>
+        <span class="headd">Contant</span>
+    </div>
+    <div class="right-header">
+        <span class="headd" id="login">Login &#9919</span>
+    </div>
+</div>
+<div id="body1">
+    <div id="left" style="background-color: #fff"></div>
+    <div id="content">
+        <div><h1>Welcome</h1></div>
+        <div style="padding-bottom: 20px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+            ut aliquip ex ea commodo consequat.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequatur laboriosam numquam quae
+            recusandae repellat vero. Adipisci, aliquam animi consequatur fugiat illo iste officia optio perspiciatis
+            quaerat quia totam voluptatibus?
+        </div>
+        <br>
+        <div style="margin-outside: 1px "><h2>Test</h2></div>
+        <div>Lorem ipsum...</div>
+    </div>
+    <div id="right" style="background-color: aliceblue">
+        <div>
+            <button class="button">ADS</button>
+        </div>
+        <div>
+            <button class="button">ADS</button>
+        </div>
+
+    </div>
+</div>
+<div id="endbody" style="background-color: gray"> Footer Text</div>
+
+
+</body>
+</html>

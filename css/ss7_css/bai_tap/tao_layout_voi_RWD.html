@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .contaier > div {
+            background-color: bisque;
+            border: 1px gray;
+            padding: 30px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .contaier {
+            display: grid;
+            grid-template-areas:
+        'header header header'
+        'left content right'
+        'footer footer footer';
+            width: 100%;
+            height: 300%;
+            margin: auto;
+        }
+
+        .header {
+            grid-area: header;
+        }
+
+        .left-content {
+            grid-area: left
+        }
+
+        .content {
+            grid-area: content
+        }
+
+        .right-content {
+            grid-area: right
+        }
+
+        .footer {
+            grid-area: footer
+        }
+    </style>
+</head>
+<body>
+<div class="contaier">
+    <div class="header" style="background-color: gray">3</div>
+    <div class="left-content">12</div>
+    <div class="content">1</div>
+    <div class="right-content">1</div>
+    <div class="footer">1</div>
+</div>
+</body>
+</html>
