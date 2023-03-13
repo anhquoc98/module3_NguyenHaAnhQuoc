@@ -15,22 +15,22 @@
 <form action="/product?action=update" method="post">
     <div>
         <span>Input Id</span>
-        <span><input type="text" name="productId" value="${product.getId()}"></span>
+        <span><input type="text" name="id" value="${product.getId()}"></span>
     </div>
 
     <div>
         <span>Input Name</span>
-        <span><input type="text" name="productName" value="${product.getNameProduct()}"></span>
+        <span><input type="text" name="name" value="${product.getNameProduct()}"></span>
     </div>
 
     <div>
         <span>Input Color</span>
-        <span><input type="text" name="productColor"value="${product.getColor()}"></span>
+        <span><input type="text" name="color"value="${product.getColor()}"></span>
     </div>
 
     <div>
         <span>Input Price</span>
-        <span><input type="text" name="productPrice" value="${product.getPrice()}"></span>
+        <span><input type="text" name="price" value="${product.getPrice()}"></span>
     </div>
     <div>
         <input type="submit">

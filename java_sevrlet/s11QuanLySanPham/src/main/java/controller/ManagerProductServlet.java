@@ -73,12 +73,6 @@ public class ManagerProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id =Integer.parseInt(request.getParameter("productId"));
-//        String nameProduct =request.getParameter("productName");
-//        String color =request.getParameter("productColor");
-//        String price =request.getParameter("productPrice");
-//        productService.add(new Product(id,nameProduct,color,price));
-//        response.sendRedirect("/product");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -102,7 +96,14 @@ public class ManagerProductServlet extends HttpServlet {
 
     }
 
-    private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
-        
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String color = request.getParameter("color");
+        String price = request.getParameter("price");
+        Product newProduct = new Product(id, name, color, price);
+        productService.update(id, newProduct);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("product/update.jsp");
+        dispatcher.forward(request, response);
     }
 }

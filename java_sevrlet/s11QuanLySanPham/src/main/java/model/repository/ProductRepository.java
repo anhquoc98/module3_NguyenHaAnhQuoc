@@ -41,9 +41,9 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void update(Product product) {
+    public void update(int index, Product product) {
         for (int i = 0; i <listProduct.size() ; i++) {
-            if (Objects.equals(listProduct.get(i).getNameProduct(), product.getNameProduct())){
+            if (listProduct.get(i).getId() ==index){
                 listProduct.set(i,product);
             }
         }
