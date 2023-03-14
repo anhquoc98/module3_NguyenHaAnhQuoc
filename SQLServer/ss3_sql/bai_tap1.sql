@@ -14,7 +14,7 @@ studentID int primary key,
 studenName varchar(255),
 address varchar(255),
 phone varchar(20),
-statusStudent int default(0),
+
 classId int,
 foreign key (classId) references class_student(classId)
 );

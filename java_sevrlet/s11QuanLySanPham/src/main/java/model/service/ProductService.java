@@ -30,8 +30,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void remove(int product) {
-
+    public void remove(int id) {
+        productRepository.remove(id);
     }
 
     @Override

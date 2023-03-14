@@ -92,6 +92,7 @@ public class ManagerProductServlet extends HttpServlet {
                 break;
             case "update":
                 updateProduct(request, response);
+                break;
             default:
                 showListPage(request, response);
                 break;
@@ -130,7 +131,6 @@ public class ManagerProductServlet extends HttpServlet {
         String price = request.getParameter("price");
         newProduct = new Product(id, name, color, price);
         productService.update(id, newProduct);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("product/update.jsp");
-        dispatcher.forward(request,response);
+        response.sendRedirect("/product");
     }
 }
