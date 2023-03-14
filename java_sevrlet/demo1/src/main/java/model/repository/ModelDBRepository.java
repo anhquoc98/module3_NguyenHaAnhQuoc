@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelDBRepository implements IModelRepository {
-    private static final String SELECT_ALL_MODEL = "select * from student";
+    private static final String SELECT_ALL_MODEL = "select * from users";
 
 
     @Override
@@ -29,6 +29,8 @@ public class ModelDBRepository implements IModelRepository {
                     String name =resultSet.getString("name");
                     String email=resultSet.getString("email");
                     String country=resultSet.getString("country");
+                    model=new Model(id,name,email,country);
+                    modelList.add(model);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
