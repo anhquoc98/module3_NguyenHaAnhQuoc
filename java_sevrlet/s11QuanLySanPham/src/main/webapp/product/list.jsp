@@ -30,6 +30,7 @@
         <th>${product.color}</th>
         <th>${product.price}</th>
     <th><a href="product?action=update&id=${product.id}">update</a></th>
+    <td><a href="/product?action=delete&id=${product.id}">delete</a></td>
     </tr>
     </c:forEach>
     </tr>

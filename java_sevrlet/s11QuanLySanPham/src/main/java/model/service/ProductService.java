@@ -30,7 +30,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void remove(Product product) {
+    public void remove(int product) {
 
     }
 

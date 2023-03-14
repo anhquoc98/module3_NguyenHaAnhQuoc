@@ -9,7 +9,7 @@ public interface IProductService {
     void add(Product product);
     Product findByName(String name);
     void update(int id, Product product);
-    void remove(Product product);
+    void remove(int product);
     void seachId(Product product);
     Product findById(int id);
 }
