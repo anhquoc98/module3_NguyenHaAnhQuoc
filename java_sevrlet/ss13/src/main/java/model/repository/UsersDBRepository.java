@@ -51,31 +51,7 @@ public class UsersDBRepository implements IUsersRepository {
         }
         return usersList;
     }
-
-    @Override
-    public void sa1ve(Users users)  {
-        Connection connection = DBConnection.getConnection();
-        CallableStatement statement = null;
-        if (connection != null) {
-            try {
-                statement = connection.prepareCall(INSERT_INTO);
-                statement.setInt(1, users.getId());
-                statement.setString(2, users.getName());
-                statement.setString(3, users.getEmail());
-                statement.setString(4, users.getCountry());
-                statement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                DBConnection.close();
-            }
-        }
-    }
+    
     @Override
     public void save(Users users)  {
         Connection connection = DBConnection.getConnection();
