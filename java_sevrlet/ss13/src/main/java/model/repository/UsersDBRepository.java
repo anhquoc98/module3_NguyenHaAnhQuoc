@@ -11,7 +11,7 @@ public class UsersDBRepository implements IUsersRepository {
     private static final String SELECT_ALL = "select * from users";
     private final String SELECT_BY_ID = "select id,name,email,country from users where id =?";
 
-    private final String INSERT_INTO = "insert into users(name,email,country) values(?,?,?)";
+    private final String INSERT_INTO = "insert into users(id,name,email,country)" + "values(?,?,?,?)";
     private final String DELETE_USER = "delete from users where id =?";
     private final String UPDATE_USER = "update users set name = ?,email= ?, country =? where id = ?";
     private final String SEARCH_BY_COUNTRY = "select id,name,email,country from users where country =?";
@@ -19,7 +19,7 @@ public class UsersDBRepository implements IUsersRepository {
 
 
     @Override
-    public List<Users> list() {
+    public List<Users> list(){
         Connection connection = DBConnection.getConnection();
         CallableStatement statement = null;
         ResultSet resultSet = null;
@@ -53,12 +53,12 @@ public class UsersDBRepository implements IUsersRepository {
     }
 
     @Override
-    public void save(Users users) throws SQLException {
+    public void sa1ve(Users users)  {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement statement = null;
+        CallableStatement statement = null;
         if (connection != null) {
             try {
-                statement = connection.prepareStatement("insert into users(id,name,email,country)" + "values(?,?,?,?)");
+                statement = connection.prepareCall(INSERT_INTO);
                 statement.setInt(1, users.getId());
                 statement.setString(2, users.getName());
                 statement.setString(3, users.getEmail());
@@ -76,17 +76,58 @@ public class UsersDBRepository implements IUsersRepository {
             }
         }
     }
-
     @Override
-    public boolean updateUser(int id, Users users) {
+    public void save(Users users)  {
+        Connection connection = DBConnection.getConnection();
+        Savepoint savepoint = null;
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO);
+            preparedStatement.setInt(1, users.getId());
+            preparedStatement.setString(2, users.getName());
+            preparedStatement.setString(3, users.getEmail());
+            preparedStatement.setString(4, users.getCountry());
+            preparedStatement.executeUpdate();
+
+            savepoint = connection.setSavepoint();
+
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareCall(INSERT_INTO);
+            preparedStatement.setInt(1, users.getId());
+            preparedStatement.setString(2, users.getName());
+            preparedStatement.setString(3, users.getEmail());
+            preparedStatement.setString(4, users.getCountry());
+            preparedStatement.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            if (savepoint != null){
+                try {
+                    connection.rollback(savepoint);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+                    connection.commit();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        }finally {
+            DBConnection.close();
+        }
+    }
+    @Override
+    public boolean updateUser(int id, Users users){
         Connection connection =DBConnection.getConnection();
         try {
-            PreparedStatement preparedStatement =connection.prepareStatement(UPDATE_USER);
-            preparedStatement.setString(1,users.getName());
-            preparedStatement.setString(2,users.getEmail());
-            preparedStatement.setString(3,users.getCountry());
-            preparedStatement.setInt(4,id);
-            return preparedStatement.executeUpdate() >0;
+            CallableStatement callableStatement =connection.prepareCall(UPDATE_USER);
+            callableStatement.setString(1,users.getName());
+            callableStatement.setString(2,users.getEmail());
+            callableStatement.setString(3,users.getCountry());
+            callableStatement.setInt(4,id);
+            return callableStatement.executeUpdate() >0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -96,9 +137,9 @@ public class UsersDBRepository implements IUsersRepository {
     public boolean deleteUser(int id, Users users) {
         Connection connection = DBConnection.getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE_USER");
-            preparedStatement.setInt(1, users.getId());
-            return preparedStatement.executeUpdate() > 0;
+            CallableStatement callableStatement = connection.prepareCall(DELETE_USER);
+            callableStatement.setInt(1, users.getId());
+            return callableStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -109,8 +150,8 @@ public class UsersDBRepository implements IUsersRepository {
         List<Users> usersList =new ArrayList<>();
         Connection connection=DBConnection.getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SORT_BY_NAME);
-            ResultSet resultSet=preparedStatement.executeQuery();
+            CallableStatement callableStatement = connection.prepareCall(SORT_BY_NAME);
+            ResultSet resultSet=callableStatement.executeQuery();
             while (resultSet.next()){
                 int id =resultSet.getInt("id");
                 String name=resultSet.getString("name");
@@ -129,9 +170,9 @@ public class UsersDBRepository implements IUsersRepository {
         List <Users> usersList=new ArrayList<>();
         Connection connection=DBConnection.getConnection();
         try {
-            PreparedStatement preparedStatement=connection.prepareStatement(SEARCH_BY_COUNTRY);
-            preparedStatement.setString(1,country);
-            ResultSet resultSet =preparedStatement.executeQuery();
+            CallableStatement callableStatement=connection.prepareCall(SEARCH_BY_COUNTRY);
+            callableStatement.setString(1,country);
+            ResultSet resultSet =callableStatement.executeQuery();
             while (resultSet.next()){
                 int id=resultSet.getInt("id");
                 String name= resultSet.getString("name");
@@ -149,9 +190,9 @@ public class UsersDBRepository implements IUsersRepository {
         Users users =null;
         Connection connection=DBConnection.getConnection();
         try {
-            PreparedStatement preparedStatement =connection.prepareStatement("SELECT_BY_ID");
-            preparedStatement.setInt(1,id);
-            ResultSet resultSet =preparedStatement.executeQuery();
+            CallableStatement callableStatement =connection.prepareCall(SELECT_BY_ID);
+            callableStatement.setInt(1,id);
+            ResultSet resultSet =callableStatement.executeQuery();
             while (resultSet.next()){
                 String name=resultSet.getString("name");
                 String email =resultSet.getString("email");
