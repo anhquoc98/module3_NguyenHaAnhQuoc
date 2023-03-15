@@ -12,11 +12,11 @@ public class ProductRepository implements IProductRepository {
 
     static {
 
-        listProduct.add(new Product(1, "IPhone", "Blue", "1"));
-        listProduct.add(new Product(2, "IPhone", "Blue", "1"));
-        listProduct.add(new Product(3, "IPhone", "Blue", "1"));
-        listProduct.add(new Product(4, "IPhone", "Blue", "1"));
-        listProduct.add(new Product(5, "IPhone", "Blue", "1"));
+        listProduct.add(new Product(1, "IPhone", "Blue", "1","a"));
+        listProduct.add(new Product(2, "IPhone", "Blue", "1","c"));
+        listProduct.add(new Product(3, "IPhone", "Blue", "1","b"));
+        listProduct.add(new Product(4, "IPhone", "Blue", "1","d"));
+        listProduct.add(new Product(5, "IPhone", "Blue", "1","e"));
     }
 
 

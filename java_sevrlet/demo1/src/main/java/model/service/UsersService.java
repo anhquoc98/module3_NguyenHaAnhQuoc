@@ -29,14 +29,15 @@ public class UsersService implements IUsersService {
     }
 
     @Override
-    public List<Users> sortByNameUser() {
+    public List<Users> sortByContryUser() {
         return null;
     }
 
     @Override
-    public List<Users> searchByCountry(String country) {
+    public List<Users> searchByname(String name) {
         return null;
     }
+
 
     @Override
     public Users selectById(int id) {

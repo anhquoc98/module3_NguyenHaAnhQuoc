@@ -89,7 +89,7 @@ public class UsersDBRepository implements IUsersRepository {
     public boolean deleteUser(int id, Users users) {
         Connection connection = DBConnection.getConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from users where id =?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE_USER");
             preparedStatement.setInt(1, users.getId());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -98,12 +98,14 @@ public class UsersDBRepository implements IUsersRepository {
     }
 
     @Override
-    public List<Users> sortByNameUser() {
+    public List<Users> sortByContryUser() {
+        List<Users> usersList =new ArrayList<>();
+        Connection connection=DBConnection.getConnection();
         return null;
     }
 
     @Override
-    public List<Users> searchByCountry(String country) {
+    public List<Users> searchByname(String name) {
         return null;
     }
 
@@ -112,7 +114,7 @@ public class UsersDBRepository implements IUsersRepository {
         Users users =null;
         Connection connection=DBConnection.getConnection();
         try {
-            PreparedStatement preparedStatement =connection.prepareStatement("select id,name,email,country from users where id =?");
+            PreparedStatement preparedStatement =connection.prepareStatement("SELECT_BY_ID");
             preparedStatement.setInt(1,id);
             ResultSet resultSet =preparedStatement.executeQuery();
             while (resultSet.next()){

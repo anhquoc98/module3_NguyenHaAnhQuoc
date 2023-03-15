@@ -5,15 +5,17 @@ public class Product {
     private String nameProduct;
     private String color;
     private String price;
+    private String manufacturer;
 
     public Product() {
     }
 
-    public Product(Integer id, String nameProduct, String color, String price) {
+    public Product(Integer id, String nameProduct, String color, String price, String manufacturer) {
         this.id = id;
         this.nameProduct = nameProduct;
         this.color = color;
         this.price = price;
+        this.manufacturer = manufacturer;
     }
 
     public Integer getId() {
@@ -46,5 +48,13 @@ public class Product {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }

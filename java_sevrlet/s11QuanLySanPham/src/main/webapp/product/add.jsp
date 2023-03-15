@@ -31,6 +31,10 @@
         <span><input type="text" name="productPrice"></span>
     </div>
     <div>
+        <span>Input Price</span>
+        <span><input type="text" name="manufacturer"></span>
+    </div>
+    <div>
         <input type="submit">
         <input type="reset">
     </div>

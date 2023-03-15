@@ -69,7 +69,8 @@ public class ManagerProductServlet extends HttpServlet {
         String nameProduct =request.getParameter("productName");
         String color =request.getParameter("productColor");
         String price =request.getParameter("productPrice");
-        productService.add(new Product(id,nameProduct,color,price));
+        String manufacturer =request.getParameter("manufacturer");
+        productService.add(new Product(id,nameProduct,color,price,manufacturer));
         response.sendRedirect("/product");
 
     }
@@ -129,7 +130,8 @@ public class ManagerProductServlet extends HttpServlet {
         String name = request.getParameter("name");
         String color = request.getParameter("color");
         String price = request.getParameter("price");
-        newProduct = new Product(id, name, color, price);
+        String manufacturer =request.getParameter("manufacturer");
+        newProduct = new Product(id, name, color, price,manufacturer);
         productService.update(id, newProduct);
         response.sendRedirect("/product");
     }
