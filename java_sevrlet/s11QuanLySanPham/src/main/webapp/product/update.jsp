@@ -33,6 +33,10 @@
         <span><input type="text" name="price" value="${product.getPrice()}"></span>
     </div>
     <div>
+        <span>Input manufacturer</span>
+        <span><input type="text" name="price" value="${product.manufacturer()}"></span>
+    </div>
+    <div>
         <input type="submit">
         <input type="reset">
     </div>
