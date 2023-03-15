@@ -2,10 +2,7 @@ package model.repository;
 
 import model.Users;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +21,12 @@ public class UsersDBRepository implements IUsersRepository {
     @Override
     public List<Users> list() {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement statement = null;
+        CallableStatement statement = null;
         ResultSet resultSet = null;
         List<Users> usersList = new ArrayList<>();
         if (connection != null) {
             try {
-                statement = connection.prepareStatement(SELECT_ALL);
+                statement = connection.prepareCall(SELECT_ALL);
                 resultSet = statement.executeQuery();
                 Users users = null;
                 while (resultSet.next()) {
@@ -56,7 +53,7 @@ public class UsersDBRepository implements IUsersRepository {
     }
 
     @Override
-    public void save(Users users) {
+    public void save(Users users) throws SQLException {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         if (connection != null) {
