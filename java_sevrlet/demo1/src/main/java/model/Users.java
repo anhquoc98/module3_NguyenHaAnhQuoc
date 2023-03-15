@@ -1,15 +1,15 @@
 package model;
 
-public class Model {
+public class Users {
     private int id;
     private String name;
     private String email;
     private String country;
 
-    public Model() {
+    public Users() {
     }
 
-    public Model(int id, String name, String email, String country) {
+    public Users(int id, String name, String email, String country) {
         this.id = id;
         this.name = name;
         this.email = email;

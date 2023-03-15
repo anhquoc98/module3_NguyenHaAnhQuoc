@@ -21,15 +21,18 @@
         <td>country</td>
     </tr>
     <tr>
-        <c:forEach items="${modelList}" var="model">
+        <c:forEach items="${usersList}" var="usersList">
     <tr>
-        <th>${model.id}</th>
-        <th>${model.name}</th>
-        <th>${model.email}</th>
-        <th>${model.country}</th>
-    </tr>
+        <th>${usersList.id}</th>
+        <th>${usersList.name}</th>
+        <th>${usersList.email}</th>
+        <th>${usersList.country}</th>
+    <td><a href="/users?action=delete&id=${usersList.getId()}">Delete</a></td>
+
+</tr>
     </c:forEach>
     </tr>
+    <a href="http://localhost:8080/users/save.jsp">Add Product</a>
 </table>
 </body>
 </html>
