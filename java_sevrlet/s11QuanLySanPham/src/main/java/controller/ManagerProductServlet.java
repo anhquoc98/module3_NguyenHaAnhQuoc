@@ -30,9 +30,6 @@ public class ManagerProductServlet extends HttpServlet {
             case "delete":
                 deletePage(request, response);
                 break;
-            case "seach":
-                seachPage(request, response);
-                break;
             default:
                 showListPage(request, response);
                 break;
@@ -46,8 +43,7 @@ public class ManagerProductServlet extends HttpServlet {
 
     }
 
-    private void seachPage(HttpServletRequest request, HttpServletResponse response) {
-    }
+
 
     private void deletePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -95,7 +91,6 @@ public class ManagerProductServlet extends HttpServlet {
                 updateProduct(request, response);
                 break;
             default:
-                showListPage(request, response);
                 break;
         }
 
