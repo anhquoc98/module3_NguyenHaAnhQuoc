@@ -44,29 +44,28 @@ public class ManagerProductServlet extends HttpServlet {
     }
 
 
-
     private void deletePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = this.productService.findById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product/delete.jsp");
-        dispatcher.forward(request,response);
+        dispatcher.forward(request, response);
     }
 
     private void showUpdatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id =Integer.parseInt(request.getParameter("id"));
-        Product product =this.productService.findById(id);
-        request.setAttribute("product",product);
-        request.getRequestDispatcher("product/update.jsp").forward(request,response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = this.productService.findById(id);
+        request.setAttribute("product", product);
+        request.getRequestDispatcher("product/update.jsp").forward(request, response);
 
     }
 
     private void showCreatePage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id =Integer.parseInt(request.getParameter("productId"));
-        String nameProduct =request.getParameter("productName");
-        String color =request.getParameter("productColor");
-        String price =request.getParameter("productPrice");
-        String manufacturer =request.getParameter("manufacturer");
-        productService.add(new Product(id,nameProduct,color,price,manufacturer));
+        int id = Integer.parseInt(request.getParameter("productId"));
+        String nameProduct = request.getParameter("productName");
+        String color = request.getParameter("productColor");
+        String price = request.getParameter("productPrice");
+        String manufacturer = request.getParameter("manufacturer");
+        productService.add(new Product(id, nameProduct, color, price, manufacturer));
         response.sendRedirect("/product");
 
     }
@@ -100,16 +99,7 @@ public class ManagerProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = this.productService.findById(id);
         RequestDispatcher dispatcher;
-        if (product == null) {
-            dispatcher = request.getRequestDispatcher("/view/error.jsp");
-            try {
-                dispatcher.forward(request, response);
-            } catch (ServletException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else {
+        if (product != null) {
             this.productService.remove(id);
             try {
                 response.sendRedirect("/product");
@@ -120,13 +110,13 @@ public class ManagerProductServlet extends HttpServlet {
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Product newProduct ;
+        Product newProduct;
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String color = request.getParameter("color");
         String price = request.getParameter("price");
-        String manufacturer =request.getParameter("manufacturer");
-        newProduct = new Product(id, name, color, price,manufacturer);
+        String manufacturer = request.getParameter("manufacturer");
+        newProduct = new Product(id, name, color, price, manufacturer);
         productService.update(id, newProduct);
         response.sendRedirect("/product");
     }

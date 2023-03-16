@@ -53,10 +53,10 @@ public class UsersServlet extends HttpServlet {
 
     private void showUpdatePage(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Users users =this.usersService.selectById(id);
-        RequestDispatcher dispatcher =request.getRequestDispatcher("users/update.jsp");
+        Users users = this.usersService.selectById(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("users/update.jsp");
         try {
-            dispatcher.forward(request,response);
+            dispatcher.forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -102,8 +102,11 @@ public class UsersServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         usersService.save(new Users(id, name, email, country));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/users/update.jsp");
         try {
-            response.sendRedirect("/users");
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -129,7 +132,7 @@ public class UsersServlet extends HttpServlet {
                 seachByCountry(request, response);
                 break;
             default:
-                showListPage(request,response);
+                showListPage(request, response);
         }
     }
 
@@ -138,15 +141,12 @@ public class UsersServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
-        Users users = new Users(id,name,email,country);
+        Users users = new Users(id, name, email, country);
         RequestDispatcher dispatcher;
-        if (users != null) {
-            this.usersService.updateUser(id, users);
-            request.setAttribute("users", users);
-            request.setAttribute("message", "Users Information was updated");
-            dispatcher = request.getRequestDispatcher("user/edit.jsp");
-            dispatcher.forward(request,response);
-        }
+        this.usersService.updateUser(id, users);
+        request.setAttribute("users", users);
+    response.sendRedirect("/users");
+
 
     }
 

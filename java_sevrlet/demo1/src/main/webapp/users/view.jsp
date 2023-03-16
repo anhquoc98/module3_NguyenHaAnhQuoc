@@ -33,8 +33,8 @@
         <th>${usersList.name}</th>
         <th>${usersList.email}</th>
         <th>${usersList.country}</th>
-    <td><a href="/users?action=delete&id=${usersList.getId()}">Delete</a></td>
-    <td><a href="/users?action=update&id=${usersList.getId()}">Edit</a></td>
+    <td><a href="/users?action=delete&id=${usersList.id}">Delete</a></td>
+    <td><a href="/users?action=update&id=${usersList.id}">Edit</a></td>
 
 </tr>
     </c:forEach>
