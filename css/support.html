@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="support.css">
+</head>
+<body>
+<!-- Navigation Block -->
+<div class="bloc l-bloc" id="nav-bloc">
+  <div class="container">
+    <nav class="navbar row">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Company</a>
+        <button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
+          <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-1">
+        <ul class="site-navigation nav">
+          <li>
+            <a href="#">about</a>
+          </li>
+          <li>
+            <a href="#">team</a>
+          </li>
+          <li>
+            <a href="#">projects</a>
+          </li>
+          <li>
+            <a href="#">feed</a>
+          </li>
+          <li>
+            <a href="#">contacts</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- Navigation Block END -->
+
+
+<!-- Carousel -->
+<div class="container">
+  <div class="row">
+    <!-- Carousel -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <video src="https://www.shutterstock.com/shutterstock/videos/1089898673/preview/stock-footage-new-york-united-states-dec-glowing-netflix-neon-animated-icon-line-social-media-k.webm" alt="First slide" width="100%" height="700px">
+          <!-- Static Header -->
+          <div class="header-text hidden-xs">
+            <div class="col-md-12 text-center">
+              <h2>
+                <span>OUR VISION</span>
+              </h2>
+              <br>
+          </div><!-- /header-text -->
+              <h2>
+                <span>OUR VISION</span>
+              </h2>
+              <br>
+              <div class="">
+                <a class="btn btn-theme btn-sm btn-min-block" href="#">Read More</a></div>
+            </div>
+          </div><!-- /header-text -->
+        </div>
+        <div class="item">
+          <!-- Static Header -->
+          <div class="header-text hidden-xs">
+            <div class="col-md-12 text-center">
+              <h2>
+                <span>OUR VISION</span>
+              </h2>
+              <br>
+              <div class="">
+                <a class="btn btn-theme btn-sm btn-min-block" href="#">Read More</a></div>
+            </div>
+          </div><!-- /header-text -->
+        </div>
+      </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div><!-- Carousel END -->
+  </div>
+</div>
+
+<!-- Posts -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-md-4">
+      <div class="post news">
+        <div class="post-img-content">
+          <img src="http://placehold.it/460x250/e67e22/ffffff&text=Lorem" class="img-responsive" />
+          <span class="post-date">Lorem Ipsum</span>
+        </div>
+        <br>
+        <div class="content">
+          <div>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book.
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5 col-md-5">
+      <div class="post work">
+        <div class="post-img-content">
+          <img src="http://placehold.it/460x250/2980b9/ffffff&text=Lorem" class="img-responsive" />
+          <span class="post-date">Lorem Ipsum</span>
+        </div>
+        <br>
+        <div class="content">
+          <div>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book.
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <div class="post feed">
+        <div class="post-img-content">
+          <img src="http://placehold.it/460x250/47A447/ffffff&text=Lorem" class="img-responsive" />
+          <span class="post-date">Lorem Ipsum</span>
+        </div>
+        <br>
+        <div class="content">
+          <div>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book.
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  // Startup Scripts
+  $(document).ready(function()
+  {
+    $('.hero').css('height', ($(window).height() - $('header').outerHeight()) + 'px'); // Set hero to fill page height
+
+    $('#scroll-hero').click(function()
+    {
+      $('html,body').animate({scrollTop: $("#hero-bloc").height()}, 'slow');
+    });
+  });
+
+
+  // Window resize
+  $(window).resize(function()
+  {
+    $('.hero').css('height', ($(window).height() - $('header').outerHeight()) + 'px'); // Refresh hero height
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</html>
