@@ -20,8 +20,8 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product findByName(String name) {
-        return null;
+    public List<Product> findByName(String name) {
+        return productRepository.findByName(name);
     }
 
     @Override
@@ -34,10 +34,7 @@ public class ProductService implements IProductService {
         productRepository.remove(id);
     }
 
-    @Override
-    public void seachId(Product product) {
 
-    }
 
     @Override
     public Product findById(int id) {

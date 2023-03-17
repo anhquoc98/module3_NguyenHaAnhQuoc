@@ -31,10 +31,10 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product findByName(String name) {
-        for(Product c:listProduct){
-            if (Objects.equals(c.getNameProduct(), name)){
-                return c;
+    public List<Product> findByName(String name) {
+        for (int i = 0; i <listProduct.size() ; i++) {
+            if (Objects.equals(listProduct.get(i).getNameProduct(), name)){
+                return listProduct;
             }
         }
         return null;
@@ -54,14 +54,11 @@ public class ProductRepository implements IProductRepository {
         for (int i = 0; i <listProduct.size() ; i++) {
             if (listProduct.get(i).getId() ==id){
                 listProduct.remove(i);
+                break;
             }
         }
     }
 
-    @Override
-    public void seachName(Product product) {
-
-    }
 
 
     @Override

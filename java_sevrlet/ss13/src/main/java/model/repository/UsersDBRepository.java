@@ -26,7 +26,7 @@ public class UsersDBRepository implements IUsersRepository {
         List<Users> usersList = new ArrayList<>();
         if (connection != null) {
             try {
-                statement = connection.prepareCall(SELECT_ALL);
+                statement = connection.prepareCall("{call get_list_user}");
                 resultSet = statement.executeQuery();
                 Users users = null;
                 while (resultSet.next()) {
@@ -98,12 +98,12 @@ public class UsersDBRepository implements IUsersRepository {
     public boolean updateUser(int id, Users users){
         Connection connection =DBConnection.getConnection();
         try {
-            CallableStatement callableStatement =connection.prepareCall(UPDATE_USER);
-            callableStatement.setString(1,users.getName());
-            callableStatement.setString(2,users.getEmail());
-            callableStatement.setString(3,users.getCountry());
-            callableStatement.setInt(4,id);
-            return callableStatement.executeUpdate() >0;
+            PreparedStatement preparedStatement =connection.prepareStatement(UPDATE_USER);
+            preparedStatement.setString(1,users.getName());
+            preparedStatement.setString(2,users.getEmail());
+            preparedStatement.setString(3,users.getCountry());
+            preparedStatement.setInt(4,id);
+            return preparedStatement.executeUpdate() >0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -113,7 +113,7 @@ public class UsersDBRepository implements IUsersRepository {
     public boolean deleteUser(int id, Users users) {
         Connection connection = DBConnection.getConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall(DELETE_USER);
+            CallableStatement callableStatement = connection.prepareCall("{call delete_user(?)}");
             callableStatement.setInt(1, users.getId());
             return callableStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -126,7 +126,7 @@ public class UsersDBRepository implements IUsersRepository {
         List<Users> usersList =new ArrayList<>();
         Connection connection=DBConnection.getConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall(SORT_BY_NAME);
+            CallableStatement callableStatement = connection.prepareCall( "{call edit_user(?,?,?,?)}");
             ResultSet resultSet=callableStatement.executeQuery();
             while (resultSet.next()){
                 int id =resultSet.getInt("id");
@@ -146,9 +146,9 @@ public class UsersDBRepository implements IUsersRepository {
         List <Users> usersList=new ArrayList<>();
         Connection connection=DBConnection.getConnection();
         try {
-            CallableStatement callableStatement=connection.prepareCall(SEARCH_BY_COUNTRY);
-            callableStatement.setString(1,country);
-            ResultSet resultSet =callableStatement.executeQuery();
+            PreparedStatement preparedStatement=connection.prepareStatement(SEARCH_BY_COUNTRY);
+            preparedStatement.setString(1,country);
+            ResultSet resultSet =preparedStatement.executeQuery();
             while (resultSet.next()){
                 int id=resultSet.getInt("id");
                 String name= resultSet.getString("name");
@@ -166,7 +166,7 @@ public class UsersDBRepository implements IUsersRepository {
         Users users =null;
         Connection connection=DBConnection.getConnection();
         try {
-            CallableStatement callableStatement =connection.prepareCall(SELECT_BY_ID);
+            CallableStatement callableStatement =connection.prepareCall("{call get_user_by_id(?)}");
             callableStatement.setInt(1,id);
             ResultSet resultSet =callableStatement.executeQuery();
             while (resultSet.next()){
