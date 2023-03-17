@@ -98,7 +98,7 @@ public class UsersDBRepository implements IUsersRepository {
     public boolean updateUser(int id, Users users){
         Connection connection =DBConnection.getConnection();
         try {
-            CallableStatement callableStatement =connection.prepareCall(UPDATE_USER);
+            CallableStatement callableStatement =connection.prepareCall( "{call edit_user(?,?,?,?)}");
             callableStatement.setString(1,users.getName());
             callableStatement.setString(2,users.getEmail());
             callableStatement.setString(3,users.getCountry());
@@ -113,7 +113,7 @@ public class UsersDBRepository implements IUsersRepository {
     public boolean deleteUser(int id, Users users) {
         Connection connection = DBConnection.getConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall(DELETE_USER);
+            CallableStatement callableStatement = connection.prepareCall("{call delete_user(?)}");
             callableStatement.setInt(1, users.getId());
             return callableStatement.executeUpdate() > 0;
         } catch (SQLException e) {
